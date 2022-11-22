@@ -67,4 +67,12 @@
     }
 
 
-5.
+// 5. Classes let us change variable properties even if the class instance itself is constant
+    class Singer {
+        var name = "Adele"
+    }
+
+    let singer = Singer()
+    singer.name = "Justin"
+    print(singer.name)
+    
