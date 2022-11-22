@@ -1,0 +1,1 @@
+store a fixed number of items in specific types
