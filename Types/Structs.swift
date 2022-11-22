@@ -50,3 +50,52 @@ struct Employee {
 }
 
 // NewValue is interpreted by swift as whatever the user passes in to set the value
+
+
+// Property Reservers: pieces of code that run when a property changes
+    // didSet: runs after the change has taken place
+    // willSet: runs before the change has taken place
+
+struct Game {
+    var score = 0 {
+        didSet {
+            print("Score is now \(score)")
+        }
+    }
+}
+
+var game = Game()
+game.score += 10
+game.score -= 3
+
+
+
+// Access Control
+// - Private: Let nothing outside of the struct read or write this...
+// - Private Set: Anything outside can read but only the struct can set it...
+// - File Private: Anything inside the current file can read an write...
+// - Public: anything can read or write...
+
+struct BankAccount {
+    private(set) var funds = 0
+
+    mutating func deposit(amount: Int) {
+        funds += amount
+    }
+
+    mutating func withdrawal(amount: Int) -> Bool {
+        if funds > amount {
+            funds -= amount
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
+let account = BankAccount(funds: 100)
+// we can read account.funds outside of the struct
+print(account.funds)
+// but we can't write account.funds from outside the struct so 
+account.funds += 100 
+// will throw an error
